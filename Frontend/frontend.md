@@ -1,0 +1,1 @@
+W tym folderze część(folder) przeglądarkowa projektu

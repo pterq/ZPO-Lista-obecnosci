@@ -1,0 +1,1 @@
+W tym folderze (folder) backend + baza danych projektu
