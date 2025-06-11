@@ -33,3 +33,11 @@ Student przydzielony jest do grupy. Grupa składa się ze studentów z utworzone
 i relacje many-to-one (lub many-to-many) 
 (przykład: http://www.mkyong.com/hibernate/hibernate-one-to-many-relationship-example/). 
 Baza danych powinna zawierać tabelę grup i tabelę studentów.
+poradnik jak to odpalic:
+latest mysql w dockerze, bind portow jak tutaj
+![image](https://github.com/user-attachments/assets/8988e733-0537-414a-a8d6-8509945ea759)
+zmienne srodowiskowe jak tutaj
+![image](https://github.com/user-attachments/assets/6e13e9c8-c1a1-4961-ae35-2f03e1e01aed)
+i odpalasz apke baza danych sie tworzy na dev jest create drop wiec sie zeruje zawsze na normalnych ustawieniach mamy update czyli tylko tworzy tabele ktorych nie bylo
+
+
