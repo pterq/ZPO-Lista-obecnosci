@@ -1,0 +1,9 @@
+application:
+  security:
+    jwt:
+      secret-key: a4c9f5b2410d37210fd0ec8266f6e36e9bcfa412e8d7a3507c17a57d2048de96
+      expiration: 60000 # 1 minute
+      refresh-token:
+        expiration: 28800000 # 8 hours
+    cors:
+      url-key: http://localhost:3000
