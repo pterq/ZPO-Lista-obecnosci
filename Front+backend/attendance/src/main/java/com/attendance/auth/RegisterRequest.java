@@ -1,5 +1,5 @@
 package com.attendance.auth;
-import com.attendance.user.Role;
+import com.attendance.student.Role;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -7,8 +7,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
-import static com.attendance.user.Role.ADMIN;
-import static com.attendance.user.Role.MANAGER;
+import static com.attendance.student.Role.ADMIN;
+import static com.attendance.student.Role.MANAGER;
 
 @SpringBootApplication
 @EnableJpaAuditing(auditorAwareRef = "auditorAware")

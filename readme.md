@@ -36,7 +36,7 @@ Baza danych powinna zawierać tabelę grup i tabelę studentów.
 poradnik jak to odpalic:
 latest mysql w dockerze,
 zmienne srodowiskowe jak tutaj
-![image](https://github.com/user-attachments/assets/b376b366-c1bc-4d67-a277-af9271fcdc40)
+![image](https://github.com/student-attachments/assets/b376b366-c1bc-4d67-a277-af9271fcdc40)
 i odpalasz apke baza danych sie tworzy na dev jest create drop wiec sie zeruje zawsze na normalnych ustawieniach mamy update czyli tylko tworzy tabele ktorych nie bylo
 
 

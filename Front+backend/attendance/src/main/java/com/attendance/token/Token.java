@@ -1,8 +1,8 @@
 package com.attendance.token;
 
 
+import com.attendance.student.Student;
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.attendance.user.User;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -31,9 +31,9 @@ public class Token {
     public boolean expired;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "student_id")
     @JsonBackReference
-    public User user;
+    public Student student;
 
     public TokenType getType() {
         return tokenType;

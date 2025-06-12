@@ -1,6 +1,6 @@
 package com.attendance.auditing;
 
-import com.attendance.user.User;
+import com.attendance.student.Student;
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -22,7 +22,7 @@ public class ApplicationAuditAware implements AuditorAware<Integer> {
             return Optional.empty();
         }
 
-        User userPrincipal = (User) authentication.getPrincipal();
-        return Optional.ofNullable(userPrincipal.getId());
+        Student studentPrincipal = (Student) authentication.getPrincipal();
+        return Optional.ofNullable(studentPrincipal.getId());
     }
 }

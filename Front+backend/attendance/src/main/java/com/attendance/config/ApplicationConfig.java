@@ -1,7 +1,7 @@
 package com.attendance.config;
 
 import com.attendance.auditing.ApplicationAuditAware;
-import com.attendance.user.UserRepository;
+import com.attendance.student.StudentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,7 +19,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @RequiredArgsConstructor
 public class ApplicationConfig {
 
-    private final UserRepository repository;
+    private final StudentRepository repository;
 
     @Bean
     public UserDetailsService userDetailsService() {

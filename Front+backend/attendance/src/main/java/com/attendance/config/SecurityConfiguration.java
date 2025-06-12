@@ -1,7 +1,7 @@
 package com.attendance.config;
 
-import com.attendance.user.Permission;
-import com.attendance.user.Role;
+import com.attendance.student.Permission;
+import com.attendance.student.Role;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;

@@ -4,9 +4,9 @@ import com.attendance.token.Token;
 import com.attendance.token.TokenRepository;
 import com.attendance.token.TokenType;
 import com.attendance.config.JwtService;
-import com.attendance.user.User;
-import com.attendance.user.UserRepository;
-import com.attendance.user.UserService;
+import com.attendance.student.Student;
+import com.attendance.student.StudentRepository;
+import com.attendance.student.StudentService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -25,8 +25,8 @@ import java.io.IOException;
 @Service
 @RequiredArgsConstructor
 public class AuthenticationService {
-    private final UserRepository userRepository;
-    private final UserService userService;
+    private final StudentRepository studentRepository;
+    private final StudentService studentService;
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
@@ -40,16 +40,15 @@ public class AuthenticationService {
      * @return The AuthenticationResponse object containing the access token and refresh token.
      */
     public AuthenticationResponse register(RegisterRequest request) {
-        var user = User
+        var user = Student
                 .builder()
                 .firstName(request.getFirstName())
                 .lastName(request.getLastName())
                 .username(request.getUsername())
-                .email(request.getEmail())
                 .password(passwordEncoder.encode((request.getPassword())))
                 .role(request.getRole())
                 .build();
-        var savedUser = userRepository.save(user);
+        var savedUser = studentRepository.save(user);
         var jwtToken = jwtService.generateToken(user);
         var refreshToken = jwtService.generateRefreshToken(user);
         saveUserToken(savedUser, jwtToken, TokenType.BEARER);
@@ -75,7 +74,7 @@ public class AuthenticationService {
                         request.getPassword()
                 )
         );
-        var user = userRepository.findByUsername(request.getUsername())
+        var user = studentRepository.findByUsername(request.getUsername())
                 .orElseThrow();
         var jwtToken = jwtService.generateToken(user);
 
@@ -96,13 +95,13 @@ public class AuthenticationService {
     /**
      * Saves a user token in the database.
      *
-     * @param user      The User object for which the token is associated.
+     * @param student      The User object for which the token is associated.
      * @param token     The token value.
      * @param tokenType The type of the token (REFRESH or BEARER).
      */
-    private void saveUserToken(User user, String token, TokenType tokenType) {
+    private void saveUserToken(Student student, String token, TokenType tokenType) {
         var tokenEntity = Token.builder()
-                .user(user)
+                .student(student)
                 .token(token)
                 .tokenType(tokenType)
                 .expired(false)
@@ -114,10 +113,10 @@ public class AuthenticationService {
     /**
      * Revokes only BEARER tokens associated with a user.
      *
-     * @param user The User object for which the tokens need to be revoked.
+     * @param student The User object for which the tokens need to be revoked.
      */
-    private void revokeBearerTokensUser(User user) {
-        var validUserTokens = tokenRepository.findAllValidTokenByUser(user.getId());
+    private void revokeBearerTokensUser(Student student) {
+        var validUserTokens = tokenRepository.findAllValidTokenByUser(student.getId());
         if (validUserTokens.isEmpty())
             return;
 
@@ -132,10 +131,10 @@ public class AuthenticationService {
     /**
      * Revokes all tokens associated with a user.
      *
-     * @param user The User object for which the tokens need to be revoked.
+     * @param student The User object for which the tokens need to be revoked.
      */
-    private void revokeAllUserTokens(User user) {
-        var validUserTokens = tokenRepository.findAllValidTokenByUser(user.getId());
+    private void revokeAllUserTokens(Student student) {
+        var validUserTokens = tokenRepository.findAllValidTokenByUser(student.getId());
         if (validUserTokens.isEmpty())
             return;
         validUserTokens.forEach(token -> {
@@ -161,9 +160,9 @@ public class AuthenticationService {
         }
         final String username = jwtService.extractUsername(refreshToken);
         if (username != null) {
-            var user = this.userRepository.findByUsername(username).orElseThrow(() -> new IOException("User not found"));
+            var user = this.studentRepository.findByUsername(username).orElseThrow(() -> new IOException("User not found"));
             // Compare token in cookie with the one saved in the database
-            var savedToken = userService.getRefreshToken(user);
+            var savedToken = studentService.getRefreshToken(user);
             if (!refreshToken.equals(savedToken)) {
                 response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Invalid refresh token");
                 return;
