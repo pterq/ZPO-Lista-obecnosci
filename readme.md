@@ -37,7 +37,7 @@ poradnik jak to odpalic:
 latest mysql w dockerze, bind portow jak tutaj
 ![image](https://github.com/user-attachments/assets/8988e733-0537-414a-a8d6-8509945ea759)
 zmienne srodowiskowe jak tutaj
-![image](https://github.com/user-attachments/assets/6e13e9c8-c1a1-4961-ae35-2f03e1e01aed)
+![image](https://github.com/user-attachments/assets/b376b366-c1bc-4d67-a277-af9271fcdc40)
 i odpalasz apke baza danych sie tworzy na dev jest create drop wiec sie zeruje zawsze na normalnych ustawieniach mamy update czyli tylko tworzy tabele ktorych nie bylo
 
 
