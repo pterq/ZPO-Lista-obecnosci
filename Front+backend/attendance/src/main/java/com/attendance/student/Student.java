@@ -28,7 +28,7 @@ public class Student implements UserDetails {
     //    @JsonIgnore
     private String password;
     @Column(unique = true)
-    private String index;
+    private String student_index;
 //    @JsonIgnore
     private Role role;
 

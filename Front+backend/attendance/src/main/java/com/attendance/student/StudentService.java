@@ -14,7 +14,7 @@ public class StudentService {
     private final StudentRepository studentRepository;
     private final TokenRepository tokenRepository;
     public String getRefreshToken(Student student) {
-        Optional<Token> refreshToken = tokenRepository.findTopByUserAndTokenTypeAndRevokedFalseAndExpiredFalseOrderByIdDesc(
+        Optional<Token> refreshToken = tokenRepository.findTopByStudentAndTokenTypeAndRevokedFalseAndExpiredFalseOrderByIdDesc(
                 student, TokenType.REFRESH);
 
         return refreshToken.map(Token::getToken).orElse(null);

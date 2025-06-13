@@ -25,7 +25,7 @@ public class AttendanceService {
 
     public List<Attendance> findByUser(Student student)
     {
-        return attendanceRepository.findByUser(student);
+        return attendanceRepository.findByStudent(student);
     }
 
     public Optional<AttendanceResponseDto> findById(Long invoiceId) {
